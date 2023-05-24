@@ -18,4 +18,17 @@ class Company extends Model
         'name',
         'logo'
     ];
+
+    // tambahkan fungsi users many to many
+    public function users() {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function teams() {
+        return $this->hasMany(Team::class);
+    }
+
+    public function roles() {
+        return $this->hasMany(Role::class);
+    }
 }
