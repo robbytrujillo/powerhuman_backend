@@ -28,6 +28,7 @@ class CompanyController extends Controller
         // powerhuman.com/api/company
         $companies = Company::with(['users']);
 
+        // filtering nama perusahaan  ..... powerhuman.com/apy/company?name=Kunde
         if ($name) {
             $companies ->where ('name', 'like', '%' . $name. '%');
         }
@@ -35,5 +36,7 @@ class CompanyController extends Controller
             $companies->paginate($limit),
             'Companies found'
         );
+
+        Company::with(['users'])->where('name', 'like', '%Kunde%')->paginate(10);
     }
 }
