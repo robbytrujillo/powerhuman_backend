@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
-    // powerhuman.com/apy/company?id=1
+   
     public function all(Request $request) {
         $id = $request->input('id');
         $limit = $request->input('limit', 10);
 
+         // powerhuman.com/apy/company?id=1
         if ($id) {
-            $company = Company::find($id);
+            $company = Company::with(['users'])->find($id);
         }
     }
 }
