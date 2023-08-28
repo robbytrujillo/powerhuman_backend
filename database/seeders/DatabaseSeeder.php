@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
         // Team::factory(5)->create();
         //Role::factory(50)->create();
         // Responsibility::factory(200)->create();
-        Employee::factory(1000)->create();
+        //Employee::factory(1000)->create();
+        
     }
 }
