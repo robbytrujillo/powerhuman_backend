@@ -32,11 +32,13 @@ class CompanyController extends Controller
         if ($name) {
             $companies ->where ('name', 'like', '%' . $name. '%');
         }
+
+         // Company::with(['users'])->where('name', 'like', '%Kunde%')->paginate(10);
         return ResponseFormatter::success(
             $companies->paginate($limit),
             'Companies found'
         );
 
-        Company::with(['users'])->where('name', 'like', '%Kunde%')->paginate(10);
+       
     }
 }
