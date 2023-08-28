@@ -31,5 +31,9 @@ class CompanyController extends Controller
         if ($name) {
             $companies ->where ('name', 'like', '%' . $name. '%');
         }
+        return ResponseFormatter::success(
+            $companies->paginate($limit),
+            'Companies found'
+        );
     }
 }
