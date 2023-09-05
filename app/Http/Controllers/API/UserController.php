@@ -18,7 +18,8 @@ class UserController extends Controller
             ]);
         
             // TODO: Find User By Email
-        
+            $credentials = request(['email', 'password']);
+
             // TODO: Generate Token
         
             // TODO: Return Response
