@@ -22,9 +22,7 @@ class UserController extends Controller
             // TODO: Find User By Email
             $credentials = request(['email', 'password']);
             if (!Auth::attempt($credentials)) {
-                return ResponseFormatter::error([
-                    'message' => 'Unauthorized']
-                    , 401);
+                return ResponseFormatter::error('Unauthorized', 401);
             }
             // TODO: Generate Token
         
