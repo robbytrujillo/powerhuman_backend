@@ -43,9 +43,24 @@ class UserController extends Controller
                 'user' => $user
             ], 'Login success');
             
-        }catch (Exception $e) {
+        }catch (Exception $error) {
             return ResponseFormatter::error('Authentication Failed');
         }
 
+    }
+
+    public function register (Request $request) {
+        try {
+            // TODO: Validate Request
+
+            // Create User
+
+            // Generate Token
+
+            // Return Response
+
+        } catch (Exception $error) {
+            //throw $th;
+        }
     }
 }
