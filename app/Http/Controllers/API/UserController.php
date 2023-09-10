@@ -53,14 +53,15 @@ class UserController extends Controller
         try {
             // TODO: Validate Request
 
-            // Create User
+            // TODO: Create User
 
-            // Generate Token
+            // TODO: Generate Token
 
-            // Return Response
+            // TODO: Return Response
 
         } catch (Exception $error) {
-            //throw $th;
+            // TODO: Return Error Response
+            
         }
     }
 }
