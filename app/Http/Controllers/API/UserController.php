@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Fortify\Rules\Password;
 use PhpParser\Node\Stmt\TryCatch;
 
 class UserController extends Controller
@@ -55,8 +56,7 @@ class UserController extends Controller
             $request->validate([
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string'],
-                
+                'password' => ['required', 'string', new Password],
             ]);
 
             // TODO: Create User
