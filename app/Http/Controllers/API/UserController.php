@@ -60,10 +60,21 @@ class UserController extends Controller
             ]);
 
             // TODO: Create User
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
 
             // TODO: Generate Token
+            $tokenResult = $user->createToken('authToken')->plainTextToken;
 
             // TODO: Return Response
+            return ResponseFormatter::success([
+                'access_token' => $tokenResult,
+                'token_type' => 'Bearer',
+                'user' => $user
+            ], 'Register success');
 
         } catch (Exception $error) {
             // TODO: Return Error Response
