@@ -16,13 +16,13 @@ class UserController extends Controller
 {
     public function login(Request $request) {
         try {
-            // TODO: Validate Request
+            // Validate Request
             $request->validate([
                 'email' => 'required|email',
                 'password' => 'required'
             ]);
         
-            // TODO: Find User By Email
+            // Find User By Email
             $credentials = request(['email', 'password']);
             if (!Auth::attempt($credentials)) {
                 return ResponseFormatter::error('Unauthorized', 401);
@@ -33,11 +33,11 @@ class UserController extends Controller
                 throw new Exception('Invalid password');
             }
 
-            // TODO: Generate Token
+            // Generate Token
             $tokenResult = $user->createToen('authToken')->plainTextToken;
             
         
-            // TODO: Return Response
+            // Return Response
             return ResponseFormatter::success([
                 'access_token' => $tokenResult,
                 'token_type' => 'Bearer',
@@ -52,7 +52,7 @@ class UserController extends Controller
 
     public function register (Request $request) {
         try {
-            // TODO: Validate Request
+            // Validate Request
             $request->validate([
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
