@@ -59,17 +59,17 @@ class UserController extends Controller
                 'password' => ['required', 'string', new Password],
             ]);
 
-            // TODO: Create User
+            // Create User
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
 
-            // TODO: Generate Token
+            // Generate Token
             $tokenResult = $user->createToken('authToken')->plainTextToken;
 
-            // TODO: Return Response
+            // Return Response
             return ResponseFormatter::success([
                 'access_token' => $tokenResult,
                 'token_type' => 'Bearer',
@@ -77,8 +77,8 @@ class UserController extends Controller
             ], 'Register success');
 
         } catch (Exception $error) {
-            // TODO: Return Error Response
-            
+            // Return Error Response
+            return ResponseFormatter::error($error->getMessage());
         }
     }
 }
