@@ -23,7 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/company', [CompanyController::class, 'all']);
 
 // login (mengirim sesuatu dan mendapatkan sesuatu)
-Route::post('login',[UserController::class, 'login']);
+Route::post('login', [UserController::class, 'login']);
 
 // register (mengirim sesuatu dan mendapatkan sesuatu)
-Route::post('register',[UserController::class, 'register']);
+Route::post('register', [UserController::class, 'register']);
+
+// logout (mengirim sesuatu dan mendapatkan sesuatu)
+Route::post('logout', [UserController::class, 'logout']);
