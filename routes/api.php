@@ -29,7 +29,7 @@ Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
 
 // logout (mengirim sesuatu dan mendapatkan sesuatu)
-Route::post('logout', [UserController::class, 'logout']);
+Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
 
 // fetch
 Route::get('user', [UserController::class, 'fetch'])->middleware('auth:sanctum');
