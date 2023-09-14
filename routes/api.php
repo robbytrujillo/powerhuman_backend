@@ -24,3 +24,6 @@ Route::get('/company', [CompanyController::class, 'all']);
 
 // login (mengirim sesuatu dan mendapatkan sesuatu)
 Route::post('login',[UserController::class, 'login']);
+
+// register (mengirim sesuatu dan mendapatkan sesuatu)
+Route::post('register',[UserController::class, 'register']);
