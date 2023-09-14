@@ -32,4 +32,4 @@ Route::post('register', [UserController::class, 'register']);
 Route::post('logout', [UserController::class, 'logout']);
 
 // fetch
-Route::get('user', [UserController::class, 'fetch']);
+Route::get('user', [UserController::class, 'fetch'])->middleware('auth:sanctum');
