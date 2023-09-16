@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateCompanyRequest;
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -40,5 +41,9 @@ class CompanyController extends Controller
         );
 
        
+    }
+
+    public function create(CreateCompanyRequest $request) {
+
     }
 }
