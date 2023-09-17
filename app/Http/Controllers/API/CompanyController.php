@@ -44,6 +44,10 @@ class CompanyController extends Controller
     }
 
     public function create(CreateCompanyRequest $request) {
-
+        $company = Company::create([
+            'name' => $request->name,
+            'name' => $request->name,
+            'name' => $request->name,
+        ])
     }
 }
