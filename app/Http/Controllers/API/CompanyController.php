@@ -44,10 +44,15 @@ class CompanyController extends Controller
     }
 
     public function create(CreateCompanyRequest $request) {
+        if ($request->hasfile('logo')) {
+            $path = $request->file('logo')->store('public/logos');
+        }
+
         $company = Company::create([
             'name' => $request->name,
-            'name' => $request->name,
-            'name' => $request->name,
-        ])
+            'logo' => $path,
+        ]);
+
+        
     }
 }
