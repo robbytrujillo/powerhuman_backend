@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('company', [CompanyController::class, 'all']);
 
+// company
 Route::post('company', [CompanyController::class, 'create'])->middleware('auth:sanctum');
 
 // login (mengirim sesuatu dan mendapatkan sesuatu)
