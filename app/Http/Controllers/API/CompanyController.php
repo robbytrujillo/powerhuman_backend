@@ -6,6 +6,7 @@ use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCompanyRequest;
 use App\Models\Company;
+use Exception;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -44,15 +45,25 @@ class CompanyController extends Controller
     }
 
     public function create(CreateCompanyRequest $request) {
-        if ($request->hasfile('logo')) {
-            $path = $request->file('logo')->store('public/logos');
+        try {
+            if ($request->hasfile('logo')) {
+                $path = $request->file('logo')->store('public/logos');
+            }
+    
+            $company = Company::create([
+                'name' => $request->name,
+                'logo' => $path,
+            ]);
+
+            if (!$company) {
+                throw new Exception('Company not created');
+            }
+    
+            return ResponseFormatter::success($company, 'Company created');
+        } catch (Exception $e) {
+            return ResponseFormatter::error($e->getMessage(), 500);
         }
 
-        $company = Company::create([
-            'name' => $request->name,
-            'logo' => $path,
-        ]);
-
-        return ResponseFormatter::success($company, 'Company created');
+        
     }
 }
