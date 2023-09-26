@@ -62,6 +62,7 @@ class CompanyController extends Controller
                 throw new Exception('Company not created');
             }
 
+            // Attach company to user
             $user = User::find(Auth::id());
             $user->companies()->attach($company->id);
     
