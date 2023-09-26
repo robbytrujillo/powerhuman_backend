@@ -65,6 +65,9 @@ class CompanyController extends Controller
             // Attach company to user
             $user = User::find(Auth::id());
             $user->companies()->attach($company->id);
+
+            // Load users at company
+            $company -> load('users');
     
             return ResponseFormatter::success($company, 'Company created');
         } catch (Exception $e) {
