@@ -6,8 +6,10 @@ use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCompanyRequest;
 use App\Models\Company;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -46,6 +48,7 @@ class CompanyController extends Controller
 
     public function create(CreateCompanyRequest $request) {
         try {
+            // Upload logo
             if ($request->hasfile('logo')) {
                 $path = $request->file('logo')->store('public/logos');
             }
@@ -58,6 +61,9 @@ class CompanyController extends Controller
             if (!$company) {
                 throw new Exception('Company not created');
             }
+
+            $user = User::find(Auth::id());
+            $user->companies()->attach($company->id);
     
             return ResponseFormatter::success($company, 'Company created');
         } catch (Exception $e) {
