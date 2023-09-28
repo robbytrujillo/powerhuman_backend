@@ -77,7 +77,28 @@ class CompanyController extends Controller
         
     }
 
-    public function update() {
-        
+    public function update(UpadateCompanyRequest $request, $id) {
+        try {
+            $company = Company::find($id);
+
+            if (!$company) {
+                throw new Exception('Company not found');
+            }
+
+            // Upload logo
+            if ($request->hasfile('logo')) {
+                $path = $request->file('logo')->store('public/logos');
+            }
+
+            // Update company
+            $company->updated([
+                'name' => $request->name,
+                'logo' => $path
+            ]);
+
+            return ResponseFormatter::success($company, 'Company Update');
+        } catch (Exception $e) {
+            return ResponseFormatter::error($e->getMessage(), 500);
+        }
     }
 }
