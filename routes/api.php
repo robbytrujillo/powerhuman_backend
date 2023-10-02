@@ -21,11 +21,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Company API
-Route::group([
-    'prefix' => 'company',
-    'middleware' => 'auth:sanctum',
-    'name' => 'company.'
-], function () {
+Route::prefix('company')->middleware('auth:sanctum')->name('company.')->group(function () { 
     // Company API
 Route::get('', [CompanyController::class, 'fetch'])->name('fetch');
 
