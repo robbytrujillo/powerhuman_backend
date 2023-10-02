@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCompanyRequest;
+use App\Http\Requests\UpdateCompanyRequest;
 use App\Models\Company;
 use App\Models\User;
 use Exception;
@@ -77,7 +78,7 @@ class CompanyController extends Controller
         
     }
 
-    public function update(UpadateCompanyRequest $request, $id) {
+    public function update(UpdateCompanyRequest $request, $id) {
         try {
             $company = Company::find($id);
 
