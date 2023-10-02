@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 class CompanyController extends Controller
 {
    
-    public function all(Request $request) {
+    public function fetch(Request $request) {
         $id = $request->input('id');
         $name = $request->input('name');
         $limit = $request->input('limit', 10);

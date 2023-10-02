@@ -23,16 +23,17 @@ use Illuminate\Support\Facades\Route;
 // Company API
 Route::group([
     'prefix' => 'company',
-    'middleware' => 'auth:sanctum'
+    'middleware' => 'auth:sanctum',
+    'name' => 'company.'
 ], function () {
     // Company API
-Route::get('', [CompanyController::class, 'all']);
+Route::get('', [CompanyController::class, 'fetch'])->name('fetch');
 
 // company create
-Route::post('', [CompanyController::class, 'create']);
+Route::post('', [CompanyController::class, 'create'])->name('create');
 
 // company update
-Route::put('', [CompanyController::class, 'update']);
+Route::put('', [CompanyController::class, 'update'])->name('update');
 }
 );
 
