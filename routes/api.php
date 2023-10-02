@@ -20,11 +20,18 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+
+// Company API
 Route::get('company', [CompanyController::class, 'all']);
 
-// company
+// company create
 Route::post('company', [CompanyController::class, 'create'])->middleware('auth:sanctum');
 
+// company update
+Route::put('company', [CompanyController::class, 'update'])->middleware('auth:sanctum');
+
+
+// Auth API
 // login (mengirim sesuatu dan mendapatkan sesuatu)
 Route::post('login', [UserController::class, 'login']);
 
