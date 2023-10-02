@@ -29,7 +29,7 @@ Route::prefix('company')->middleware('auth:sanctum')->name('company.')->group(fu
     Route::post('', [CompanyController::class, 'create'])->name('create');
 
     // company update
-    Route::put('', [CompanyController::class, 'update'])->name('update');
+    Route::put('{id}', [CompanyController::class, 'update'])->name('update');
 }
 );
 
