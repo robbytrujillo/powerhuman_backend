@@ -97,7 +97,7 @@ class CompanyController extends Controller
                 'logo' => $path
             ]);
 
-            return ResponseFormatter::success($company, 'Company Update');
+            return ResponseFormatter::success($company, 'Company Updated');
         } catch (Exception $e) {
             return ResponseFormatter::error($e->getMessage(), 500);
         }
