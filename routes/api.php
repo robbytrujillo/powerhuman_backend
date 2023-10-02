@@ -21,14 +21,29 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-// Company API
+Route::group([
+    'prefix' => 'company',
+    'middleware' => 'auth:sanctum'
+], function () {
+    // Company API
 Route::get('company', [CompanyController::class, 'all']);
 
 // company create
-Route::post('company', [CompanyController::class, 'create'])->middleware('auth:sanctum');
+Route::post('company', [CompanyController::class, 'create']);
 
 // company update
-Route::put('company', [CompanyController::class, 'update'])->middleware('auth:sanctum');
+Route::put('company', [CompanyController::class, 'update']);
+}
+);
+
+// Company API
+// Route::get('company', [CompanyController::class, 'all']);
+
+// company create
+// Route::post('company', [CompanyController::class, 'create'])->middleware('auth:sanctum');
+
+// company update
+// Route::put('company', [CompanyController::class, 'update'])->middleware('auth:sanctum');
 
 
 // Auth API
