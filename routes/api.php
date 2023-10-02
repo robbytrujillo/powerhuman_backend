@@ -46,18 +46,18 @@ Route::name('auth.')->group(function() {
     
     // Auth API
     // login (mengirim sesuatu dan mendapatkan sesuatu)
-    Route::post('', [UserController::class, 'login'])->name('login');
+    Route::post('login', [UserController::class, 'login'])->name('login');
 
     // register (mengirim sesuatu dan mendapatkan sesuatu)
-    Route::post('', [UserController::class, 'register'])->name('register');
+    Route::post('register', [UserController::class, 'register'])->name('register');
 
     Route::middleware('auth:sanctum')->group(function() {
         
         // logout (mengirim sesuatu dan mendapatkan sesuatu)
-        Route::post('logout', [UserController::class, 'logout']);
+        Route::post('logout', [UserController::class, 'logout'])->name(('logout'));
     
         // fetch
-        Route::get('user', [UserController::class, 'fetch']);
+        Route::get('user', [UserController::class, 'fetch'])->name('fetch');
         });
 });
 
