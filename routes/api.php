@@ -23,13 +23,13 @@ use Illuminate\Support\Facades\Route;
 // Company API
 Route::prefix('company')->middleware('auth:sanctum')->name('company.')->group(function () { 
     // Company API
-Route::get('', [CompanyController::class, 'fetch'])->name('fetch');
+    Route::get('', [CompanyController::class, 'fetch'])->name('fetch');
 
-// company create
-Route::post('', [CompanyController::class, 'create'])->name('create');
+    // company create
+    Route::post('', [CompanyController::class, 'create'])->name('create');
 
-// company update
-Route::put('', [CompanyController::class, 'update'])->name('update');
+    // company update
+    Route::put('', [CompanyController::class, 'update'])->name('update');
 }
 );
 
@@ -42,16 +42,22 @@ Route::put('', [CompanyController::class, 'update'])->name('update');
 // company update
 // Route::put('company', [CompanyController::class, 'update'])->middleware('auth:sanctum');
 
+Route::name('auth.')->group(function() {
+    
+    // Auth API
+    // login (mengirim sesuatu dan mendapatkan sesuatu)
+    Route::post('', [UserController::class, 'login'])->name('login');
 
-// Auth API
-// login (mengirim sesuatu dan mendapatkan sesuatu)
-Route::post('login', [UserController::class, 'login']);
+    // register (mengirim sesuatu dan mendapatkan sesuatu)
+    Route::post('', [UserController::class, 'register'])->name('register');
 
-// register (mengirim sesuatu dan mendapatkan sesuatu)
-Route::post('register', [UserController::class, 'register']);
+    Route::middleware('auth:sanctum')->group(function() {
+        
+        // logout (mengirim sesuatu dan mendapatkan sesuatu)
+        Route::post('logout', [UserController::class, 'logout']);
+    
+        // fetch
+        Route::get('user', [UserController::class, 'fetch']);
+        });
+});
 
-// logout (mengirim sesuatu dan mendapatkan sesuatu)
-Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanctum');
-
-// fetch
-Route::get('user', [UserController::class, 'fetch'])->middleware('auth:sanctum');
