@@ -88,7 +88,7 @@ class CompanyController extends Controller
                 throw new Exception('Company not found');
             }
 
-            return $request->file('logo');
+            // return $request->file('logo');
 
             // Upload logo
             if ($request->hasfile('logo')) {
