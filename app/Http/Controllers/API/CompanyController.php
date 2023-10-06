@@ -79,6 +79,7 @@ class CompanyController extends Controller
     }
 
     public function update(UpdateCompanyRequest $request, $id) {
+        //return $id;
         try {
             // Get company
             $company = Company::find($id);
@@ -86,6 +87,8 @@ class CompanyController extends Controller
             if (!$company) {
                 throw new Exception('Company not found');
             }
+
+            return $request->file('logo');
 
             // Upload logo
             if ($request->hasfile('logo')) {
