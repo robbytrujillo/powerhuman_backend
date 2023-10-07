@@ -80,6 +80,7 @@ class CompanyController extends Controller
 
     public function update(UpdateCompanyRequest $request, $id) {
         //return $id;
+        //dd($request->all());
         try {
             // Get company
             $company = Company::find($id);
