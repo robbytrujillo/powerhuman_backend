@@ -34,9 +34,7 @@ class CompanyController extends Controller
         //$companies = Company::with(['users']);
         $companies = Company::whereHas('users', function ($query) {
             $query -> where('user_id', Auth::id());
-        })->when($name, function ($query) use ($name) {
-            $query->where('name', 'like', "%{name}%");
-        })->with(['users'])->paginate($limit);
+        });
 
         // filtering nama perusahaan  ..... powerhuman.com/apy/company?name=Kunde
         if ($name) {
