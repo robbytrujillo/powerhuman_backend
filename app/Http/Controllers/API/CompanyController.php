@@ -22,7 +22,9 @@ class CompanyController extends Controller
 
          // powerhuman.com/apy/company?id=1
         if ($id) {
-            $company = Company::with(['users'])->find($id);
+            $company = Company::whereHas('users', function ($query) {
+                $query->where('user_id', Auth::id());
+            })->with(['users'])->find($id);
 
             if ($company) {
                 return ResponseFormatter::success($company, 'Company found');
