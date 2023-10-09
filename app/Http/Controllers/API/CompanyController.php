@@ -31,7 +31,12 @@ class CompanyController extends Controller
             return ResponseFormatter::error('Company not found', 404);
         }
         // powerhuman.com/api/company
-        $companies = Company::with(['users']);
+        //$companies = Company::with(['users']);
+        $companies = Company::whereHas('users', function ($query) {
+            $query -> where('user_id', Auth::id());
+        })->when($name, function ($query) use ($name) {
+            $query->where('name', 'like', "%{name}%");
+        })->with(['users'])->paginate($limit);
 
         // filtering nama perusahaan  ..... powerhuman.com/apy/company?name=Kunde
         if ($name) {
