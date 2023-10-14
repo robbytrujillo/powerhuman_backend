@@ -37,9 +37,7 @@ class CompanyController extends Controller
         // powerhuman.com/api/company
         //$companies = Company::with(['users']);
         $companies = $companyQuery;// get multiple data
-        // $companies = Company::with(['users'])->whereHas('users', function ($query) { // get multiple data
-        //     $query -> where('user_id', Auth::id());
-        // });
+        
 
         // filtering nama perusahaan  ..... powerhuman.com/apy/company?name=Kunde
         if ($name) {
