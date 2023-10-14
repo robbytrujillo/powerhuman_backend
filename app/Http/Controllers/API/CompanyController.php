@@ -20,11 +20,13 @@ class CompanyController extends Controller
         $name = $request->input('name');
         $limit = $request->input('limit', 10);
 
+        $companyQuery = Company::with(['users'])->whereHas('users', function ($query) {
+            $query->where('user_id', Auth::id());
+            });
+
          // powerhuman.com/apy/company?id=1
         if ($id) { // get single data
-            $company = Company::with(['users'])->whereHas('users', function ($query) {
-                $query->where('user_id', Auth::id());
-            })->find($id);
+            $company = $companyQuery->find($id);
 
             if ($company) {
                 return ResponseFormatter::success($company, 'Company found');
@@ -34,9 +36,10 @@ class CompanyController extends Controller
         }
         // powerhuman.com/api/company
         //$companies = Company::with(['users']);
-        $companies = Company::with(['users'])->whereHas('users', function ($query) { // get multiple data
-            $query -> where('user_id', Auth::id());
-        });
+        $companies = $companyQuery;// get multiple data
+        // $companies = Company::with(['users'])->whereHas('users', function ($query) { // get multiple data
+        //     $query -> where('user_id', Auth::id());
+        // });
 
         // filtering nama perusahaan  ..... powerhuman.com/apy/company?name=Kunde
         if ($name) {
