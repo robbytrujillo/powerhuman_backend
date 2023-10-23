@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
+use Exception;
+use App\Models\Team;
 use App\Helpers\ResponseFormatter;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateTeamRequest;
 use App\Http\Requests\UpdateTeamRequest;
-use App\Models\Team;
-
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -110,6 +109,9 @@ class TeamController extends Controller
             // Get team
             $team = Team::find($id);
 
+            // TODO: Check if team is owned by user
+
+
             // Check if team exists
             if (!$team) {
                 throw new Exception('Team not found');
@@ -118,7 +120,7 @@ class TeamController extends Controller
             // Delete team
             $team->delete();
 
-            return ResponseFormatter::success('Team Deleted');
+            return ResponseFormatter::success('Team deleted');
         } catch (Exception $e) {
             return ResponseFormatter::error($e->getMessage(), 500);
         }

@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\API\CompanyController;
-use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\TeamController;
+use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,22 @@ Route::prefix('company')->middleware('auth:sanctum')->name('company.')->group(fu
 
     // company update
     Route::post('update/{id}', [CompanyController::class, 'update'])->name('update');
+}
+);
+
+// Team API
+Route::prefix('team')->middleware('auth:sanctum')->name('team.')->group(function () { 
+    // team API
+    Route::get('', [TeamController::class, 'fetch'])->name('fetch');
+
+    // team create
+    Route::post('', [TeamController::class, 'create'])->name('create');
+
+    // team update
+    Route::post('update/{id}', [TeamController::class, 'update'])->name('update');
+
+    // team delete 
+    Route::delete('delete/{id}', [TeamController::class, 'delete'])->name('delete');
 }
 );
 
