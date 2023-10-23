@@ -59,8 +59,8 @@ class TeamController extends Controller
     
             $team = Team::create([
                 'name' => $request->name,
-                'item' => $path,
-                'team_id' => $request->team_id,
+                'icon' => $path,
+                'company_id' => $request->company_id,
             ]);
 
             if (!$team) {
