@@ -46,7 +46,7 @@ Route::prefix('team')->middleware('auth:sanctum')->name('team.')->group(function
     Route::post('update/{id}', [TeamController::class, 'update'])->name('update');
 
     // team delete 
-    Route::delete('{id}', [TeamController::class, 'delete'])->name('delete');
+    Route::delete('{id}', [TeamController::class, 'destroy'])->name('delete');
 }
 );
 

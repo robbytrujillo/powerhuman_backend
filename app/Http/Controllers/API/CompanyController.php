@@ -98,14 +98,15 @@ class CompanyController extends Controller
             // return $request->file('logo');
 
             // Upload logo
-            if ($request->hasfile('logo')) {
+            if ($request->hasFile('logo')) {
                 $path = $request->file('logo')->store('public/logos');
             }
 
             // Update company
             $company->updated([
                 'name' => $request->name,
-                'logo' => $path
+                //'logo' => $path,
+                'logo' => isset($path) ? $path : $company->logo,
             ]);
 
             return ResponseFormatter::success($company, 'Company Updated');
