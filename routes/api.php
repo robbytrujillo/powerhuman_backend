@@ -2,10 +2,11 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\TeamController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\CompanyController;
-use App\Http\Controllers\API\RoleController;
+use App\Http\Controllers\API\ResponsibilityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,19 @@ Route::prefix('role')->middleware('auth:sanctum')->name('role.')->group(function
 
     // team delete 
     Route::delete('{id}', [RoleController::class, 'destroy'])->name('delete');
+}
+);
+
+// Responsibility API
+Route::prefix('responsibility')->middleware('auth:sanctum')->name('responsibility.')->group(function () { 
+    // team API
+    Route::get('', [ResponsibilityController::class, 'fetch'])->name('fetch');
+
+    // team create
+    Route::post('', [ResponsibilityController::class, 'create'])->name('create');
+
+    // team delete 
+    Route::delete('{id}', [ResponsibilityController::class, 'destroy'])->name('delete');
 }
 );
 
