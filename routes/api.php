@@ -6,6 +6,7 @@ use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\TeamController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\CompanyController;
+use App\Http\Controllers\API\EmployeeController;
 use App\Http\Controllers\API\ResponsibilityController;
 
 /*
@@ -54,30 +55,46 @@ Route::prefix('team')->middleware('auth:sanctum')->name('team.')->group(function
 
 // Role API
 Route::prefix('role')->middleware('auth:sanctum')->name('role.')->group(function () { 
-    // team API
+    // role API
     Route::get('', [RoleController::class, 'fetch'])->name('fetch');
 
-    // team create
+    // role create
     Route::post('', [RoleController::class, 'create'])->name('create');
 
-    // team update
+    // role update
     Route::post('update/{id}', [RoleController::class, 'update'])->name('update');
 
-    // team delete 
+    // role delete 
     Route::delete('{id}', [RoleController::class, 'destroy'])->name('delete');
 }
 );
 
 // Responsibility API
 Route::prefix('responsibility')->middleware('auth:sanctum')->name('responsibility.')->group(function () { 
-    // team API
+    // responsibility API
     Route::get('', [ResponsibilityController::class, 'fetch'])->name('fetch');
 
-    // team create
+    // responsibility create
     Route::post('', [ResponsibilityController::class, 'create'])->name('create');
 
-    // team delete 
+    // responsibility delete 
     Route::delete('{id}', [ResponsibilityController::class, 'destroy'])->name('delete');
+}
+);
+
+// Employee API
+Route::prefix('employee')->middleware('auth:sanctum')->name('employee.')->group(function () { 
+    // Employee API
+    Route::get('', [EmployeeController::class, 'fetch'])->name('fetch');
+
+    // Employee create
+    Route::post('', [EmployeeController::class, 'create'])->name('create');
+
+    // Employee update
+    Route::post('update/{id}', [EmployeeController::class, 'update'])->name('update');
+
+    // Employee delete 
+    Route::delete('{id}', [EmployeeController::class, 'destroy'])->name('delete');
 }
 );
 

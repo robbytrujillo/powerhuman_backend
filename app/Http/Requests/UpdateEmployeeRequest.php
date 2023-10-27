@@ -25,11 +25,11 @@ class UpdateEmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'nullable|string|max:255',
-            'email' => 'nullable|string|email|max:255',
-            'gender' => 'nullable|string|in:MALE,FEMALE',
-            'age' => 'nullable|integer',
-            'phone' => 'nullable|string|max:255',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'gender' => 'required|string|in:MALE,FEMALE',
+            'age' => 'required|integer',
+            'phone' => 'required|string|max:255',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'team_id' => 'required|integer|exists:teams,id',
             'role_id' => 'required|integer|exists:roles,id'

@@ -113,16 +113,21 @@ class EmployeeController extends Controller
                 throw new Exception('Employee not found');
             }
 
-            // Upload icon
-            if ($request->hasFile('icon')) {
-                $path = $request->file('icon')->store('public/icons');
+            // Upload photo
+            if ($request->hasFile('photo')) {
+                $path = $request->file('photo')->store('public/photos');
             }
 
             // Update employee
             $employee->update([
                 'name' => $request->name,
-                'icon' => isset($path) ? $path : $employee->icon,
-                'company_id' => $request->company_id,
+                'email' => $request->email,
+                'gender' => $request->gender,
+                'age' => $request->age,
+                'phone' => $request->phone,
+                'photo' => isset($path) ? $path : $employee->photo,
+                'team_id' => $request->team_id,
+                'role_id' => $request->role_id,
             ]);
 
             return ResponseFormatter::success($employee, 'Employee updated');
