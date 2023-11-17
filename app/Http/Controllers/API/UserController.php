@@ -23,18 +23,18 @@ class UserController extends Controller
             ]);
         
             // Find User By Email
-            $credentials = request(['email', 'password']);
-            if (!Auth::attempt($credentials)) {
-                return ResponseFormatter::error('Unauthorized', 401);
-            }
+            // $credentials = request(['email', 'password']);
+            // if (!Auth::attempt($credentials)) {
+            //     return ResponseFormatter::error('Unauthorized', 401);
+            // }
 
-            $user = User::where('email', $request->email)->first();
+            $user = User::where('email', $request->email)->firstOrFail();
             if (!Hash::check($request->password, $user->password)) {
                 throw new Exception('Invalid password');
             }
 
             // Generate Token
-            $tokenResult = $user->createToen('authToken')->plainTextToken;
+            $tokenResult = $user->createToken('authToken')->plainTextToken;
             
         
             // Return Response
@@ -45,7 +45,7 @@ class UserController extends Controller
             ], 'Login success');
             
         }catch (Exception $error) {
-            return ResponseFormatter::error('Authentication Failed');
+            return ResponseFormatter::error($error -> getMessage());
         }
 
     }

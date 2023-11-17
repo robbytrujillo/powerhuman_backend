@@ -20,11 +20,11 @@ class EmployeeFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'gender' => $this->faker->randomElement(['MALE', 'FEMALE']),
-            'age' => $this->faker->numberBetween('17', '55'),
+            'age' => $this->faker->numberBetween(17, 55),
             'phone' => $this->faker->phoneNumber(),
             'photo' => $this->faker->imageUrl(),
             'team_id' => $this->faker->numberBetween(1, 35),
-            'role_id' => $this->faker->numberBetween(1, 50),
+            'role_id' => $this->faker->numberBetween(1, 51),
         ];
     }
 }

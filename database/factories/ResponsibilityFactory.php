@@ -18,7 +18,7 @@ class ResponsibilityFactory extends Factory
     {
         return [
             'name' => $this->faker->bs(),
-            'role_id' => $this->faker->numberBetween(1, 50),
+            'role_id' => $this->faker->numberBetween(1, 51),
         ];
     }
 }
