@@ -59,7 +59,8 @@ class CompanyController extends Controller
             if ($request->hasfile('logo')) {
                 $path = $request->file('logo')->store('public/logos');
             }
-    
+            
+            // Create Company
             $company = Company::create([
                 'name' => $request->name,
                 'logo' => $path,
@@ -103,7 +104,7 @@ class CompanyController extends Controller
             }
 
             // Update company
-            $company->updated([
+            $company->update([
                 'name' => $request->name,
                 //'logo' => $path,
                 'logo' => isset($path) ? $path : $company->logo,
