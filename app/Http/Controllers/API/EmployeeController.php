@@ -94,6 +94,7 @@ class EmployeeController extends Controller
                 'age' => $request->age,
                 'phone' => $request->phone,
                 'photo' => $path,
+                'photo' => $path,
                 'team_id' => $request->team_id,
                 'role_id' => $request->role_id,
             ]);
